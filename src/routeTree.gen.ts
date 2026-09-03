@@ -16,6 +16,7 @@ import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SoftwareDemoRouteImport } from './routes/software-demo'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as AdminAmcRouteImport } from './routes/admin.amc'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminInventoryRouteImport } from './routes/admin.inventory'
@@ -59,6 +60,11 @@ const SoftwareDemoRoute = SoftwareDemoRouteImport.update({
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
   path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAmcRoute = AdminAmcRouteImport.update({
+  id: '/admin/amc',
+  path: '/admin/amc',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCustomersRoute = AdminCustomersRouteImport.update({
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
+  '/admin/amc': typeof AdminAmcRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
+  '/admin/amc': typeof AdminAmcRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
+  '/admin/amc': typeof AdminAmcRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/software-demo'
     | '/solutions'
+    | '/admin/amc'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/software-demo'
     | '/solutions'
+    | '/admin/amc'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/software-demo'
     | '/solutions'
+    | '/admin/amc'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -227,6 +239,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SoftwareDemoRoute: typeof SoftwareDemoRoute
   SolutionsRoute: typeof SolutionsRoute
+  AdminAmcRoute: typeof AdminAmcRoute
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminInventoryRoute: typeof AdminInventoryRoute
@@ -287,6 +300,13 @@ declare module '@tanstack/react-router' {
       path: '/solutions'
       fullPath: '/solutions'
       preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/amc': {
+      id: '/admin/amc'
+      path: '/admin/amc'
+      fullPath: '/admin/amc'
+      preLoaderRoute: typeof AdminAmcRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/customers': {
@@ -363,6 +383,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SoftwareDemoRoute: SoftwareDemoRoute,
   SolutionsRoute: SolutionsRoute,
+  AdminAmcRoute: AdminAmcRoute,
   AdminCustomersRoute: AdminCustomersRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminInventoryRoute: AdminInventoryRoute,
