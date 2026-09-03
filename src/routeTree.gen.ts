@@ -18,6 +18,7 @@ import { Route as SoftwareDemoRouteImport } from './routes/software-demo'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as AdminAmcRouteImport } from './routes/admin.amc'
 import { Route as AdminCalibrationRouteImport } from './routes/admin.calibration'
+import { Route as AdminComplianceRouteImport } from './routes/admin.compliance'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminInventoryRouteImport } from './routes/admin.inventory'
@@ -71,6 +72,11 @@ const AdminAmcRoute = AdminAmcRouteImport.update({
 const AdminCalibrationRoute = AdminCalibrationRouteImport.update({
   id: '/admin/calibration',
   path: '/admin/calibration',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminComplianceRoute = AdminComplianceRouteImport.update({
+  id: '/admin/compliance',
+  path: '/admin/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCustomersRoute = AdminCustomersRouteImport.update({
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
   '/admin/calibration': typeof AdminCalibrationRoute
+  '/admin/compliance': typeof AdminComplianceRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
   '/admin/calibration': typeof AdminCalibrationRoute
+  '/admin/compliance': typeof AdminComplianceRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
   '/admin/calibration': typeof AdminCalibrationRoute
+  '/admin/compliance': typeof AdminComplianceRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -192,6 +201,7 @@ export interface FileRouteTypes {
     | '/solutions'
     | '/admin/amc'
     | '/admin/calibration'
+    | '/admin/compliance'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -212,6 +222,7 @@ export interface FileRouteTypes {
     | '/solutions'
     | '/admin/amc'
     | '/admin/calibration'
+    | '/admin/compliance'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -232,6 +243,7 @@ export interface FileRouteTypes {
     | '/solutions'
     | '/admin/amc'
     | '/admin/calibration'
+    | '/admin/compliance'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -253,6 +265,7 @@ export interface RootRouteChildren {
   SolutionsRoute: typeof SolutionsRoute
   AdminAmcRoute: typeof AdminAmcRoute
   AdminCalibrationRoute: typeof AdminCalibrationRoute
+  AdminComplianceRoute: typeof AdminComplianceRoute
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminInventoryRoute: typeof AdminInventoryRoute
@@ -327,6 +340,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/calibration'
       fullPath: '/admin/calibration'
       preLoaderRoute: typeof AdminCalibrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/compliance': {
+      id: '/admin/compliance'
+      path: '/admin/compliance'
+      fullPath: '/admin/compliance'
+      preLoaderRoute: typeof AdminComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/customers': {
@@ -405,6 +425,7 @@ const rootRouteChildren: RootRouteChildren = {
   SolutionsRoute: SolutionsRoute,
   AdminAmcRoute: AdminAmcRoute,
   AdminCalibrationRoute: AdminCalibrationRoute,
+  AdminComplianceRoute: AdminComplianceRoute,
   AdminCustomersRoute: AdminCustomersRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminInventoryRoute: AdminInventoryRoute,
