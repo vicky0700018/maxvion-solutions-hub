@@ -17,6 +17,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SoftwareDemoRouteImport } from './routes/software-demo'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as AdminAmcRouteImport } from './routes/admin.amc'
+import { Route as AdminCalibrationRouteImport } from './routes/admin.calibration'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminInventoryRouteImport } from './routes/admin.inventory'
@@ -65,6 +66,11 @@ const SolutionsRoute = SolutionsRouteImport.update({
 const AdminAmcRoute = AdminAmcRouteImport.update({
   id: '/admin/amc',
   path: '/admin/amc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCalibrationRoute = AdminCalibrationRouteImport.update({
+  id: '/admin/calibration',
+  path: '/admin/calibration',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminCustomersRoute = AdminCustomersRouteImport.update({
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
+  '/admin/calibration': typeof AdminCalibrationRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
+  '/admin/calibration': typeof AdminCalibrationRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/software-demo': typeof SoftwareDemoRoute
   '/solutions': typeof SolutionsRoute
   '/admin/amc': typeof AdminAmcRoute
+  '/admin/calibration': typeof AdminCalibrationRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/inventory': typeof AdminInventoryRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/software-demo'
     | '/solutions'
     | '/admin/amc'
+    | '/admin/calibration'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/software-demo'
     | '/solutions'
     | '/admin/amc'
+    | '/admin/calibration'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/software-demo'
     | '/solutions'
     | '/admin/amc'
+    | '/admin/calibration'
     | '/admin/customers'
     | '/admin/dashboard'
     | '/admin/inventory'
@@ -240,6 +252,7 @@ export interface RootRouteChildren {
   SoftwareDemoRoute: typeof SoftwareDemoRoute
   SolutionsRoute: typeof SolutionsRoute
   AdminAmcRoute: typeof AdminAmcRoute
+  AdminCalibrationRoute: typeof AdminCalibrationRoute
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminInventoryRoute: typeof AdminInventoryRoute
@@ -307,6 +320,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/amc'
       fullPath: '/admin/amc'
       preLoaderRoute: typeof AdminAmcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/calibration': {
+      id: '/admin/calibration'
+      path: '/admin/calibration'
+      fullPath: '/admin/calibration'
+      preLoaderRoute: typeof AdminCalibrationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/customers': {
@@ -384,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   SoftwareDemoRoute: SoftwareDemoRoute,
   SolutionsRoute: SolutionsRoute,
   AdminAmcRoute: AdminAmcRoute,
+  AdminCalibrationRoute: AdminCalibrationRoute,
   AdminCustomersRoute: AdminCustomersRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminInventoryRoute: AdminInventoryRoute,
