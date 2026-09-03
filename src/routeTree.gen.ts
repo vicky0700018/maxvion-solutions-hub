@@ -24,6 +24,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminQuotationsRouteImport } from './routes/admin.quotations'
 import { Route as AdminSalesRouteImport } from './routes/admin.sales'
 import { Route as AdminSerialNumbersRouteImport } from './routes/admin.serial-numbers'
+import { Route as AdminServiceRouteImport } from './routes/admin.service'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +101,11 @@ const AdminSerialNumbersRoute = AdminSerialNumbersRouteImport.update({
   path: '/admin/serial-numbers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminServiceRoute = AdminServiceRouteImport.update({
+  id: '/admin/service',
+  path: '/admin/service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/admin/quotations': typeof AdminQuotationsRoute
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
+  '/admin/service': typeof AdminServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/admin/quotations': typeof AdminQuotationsRoute
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
+  '/admin/service': typeof AdminServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/admin/quotations': typeof AdminQuotationsRoute
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
+  '/admin/service': typeof AdminServiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/admin/quotations'
     | '/admin/sales'
     | '/admin/serial-numbers'
+    | '/admin/service'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/admin/quotations'
     | '/admin/sales'
     | '/admin/serial-numbers'
+    | '/admin/service'
   id:
     | '__root__'
     | '/'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/admin/quotations'
     | '/admin/sales'
     | '/admin/serial-numbers'
+    | '/admin/service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   AdminQuotationsRoute: typeof AdminQuotationsRoute
   AdminSalesRoute: typeof AdminSalesRoute
   AdminSerialNumbersRoute: typeof AdminSerialNumbersRoute
+  AdminServiceRoute: typeof AdminServiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSerialNumbersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/service': {
+      id: '/admin/service'
+      path: '/admin/service'
+      fullPath: '/admin/service'
+      preLoaderRoute: typeof AdminServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminQuotationsRoute: AdminQuotationsRoute,
   AdminSalesRoute: AdminSalesRoute,
   AdminSerialNumbersRoute: AdminSerialNumbersRoute,
+  AdminServiceRoute: AdminServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
