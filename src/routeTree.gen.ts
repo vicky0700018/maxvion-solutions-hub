@@ -28,6 +28,7 @@ import { Route as AdminQuotationsRouteImport } from './routes/admin.quotations'
 import { Route as AdminSalesRouteImport } from './routes/admin.sales'
 import { Route as AdminSerialNumbersRouteImport } from './routes/admin.serial-numbers'
 import { Route as AdminServiceRouteImport } from './routes/admin.service'
+import { Route as AdminWarrantyRouteImport } from './routes/admin.warranty'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -124,6 +125,11 @@ const AdminServiceRoute = AdminServiceRouteImport.update({
   path: '/admin/service',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminWarrantyRoute = AdminWarrantyRouteImport.update({
+  id: '/admin/warranty',
+  path: '/admin/warranty',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
   '/admin/service': typeof AdminServiceRoute
+  '/admin/warranty': typeof AdminWarrantyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
   '/admin/service': typeof AdminServiceRoute
+  '/admin/warranty': typeof AdminWarrantyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/admin/sales': typeof AdminSalesRoute
   '/admin/serial-numbers': typeof AdminSerialNumbersRoute
   '/admin/service': typeof AdminServiceRoute
+  '/admin/warranty': typeof AdminWarrantyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/admin/sales'
     | '/admin/serial-numbers'
     | '/admin/service'
+    | '/admin/warranty'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/admin/sales'
     | '/admin/serial-numbers'
     | '/admin/service'
+    | '/admin/warranty'
   id:
     | '__root__'
     | '/'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/admin/sales'
     | '/admin/serial-numbers'
     | '/admin/service'
+    | '/admin/warranty'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   AdminSalesRoute: typeof AdminSalesRoute
   AdminSerialNumbersRoute: typeof AdminSerialNumbersRoute
   AdminServiceRoute: typeof AdminServiceRoute
+  AdminWarrantyRoute: typeof AdminWarrantyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/warranty': {
+      id: '/admin/warranty'
+      path: '/admin/warranty'
+      fullPath: '/admin/warranty'
+      preLoaderRoute: typeof AdminWarrantyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -435,6 +455,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSalesRoute: AdminSalesRoute,
   AdminSerialNumbersRoute: AdminSerialNumbersRoute,
   AdminServiceRoute: AdminServiceRoute,
+  AdminWarrantyRoute: AdminWarrantyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
