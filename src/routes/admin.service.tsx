@@ -32,7 +32,7 @@ export const Route = createFileRoute("/admin/service")({
       { name: "robots", content: "noindex" },
     ],
   }),
-  component: ServicePage;
+  component: ServicePage,
 });
 
 const priorities = ["Low", "Medium", "High", "Critical"];
